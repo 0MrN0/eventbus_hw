@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0eb6794ee754a147888d889291b99cb, type: 3}
+  m_Name: _DeckConfig
+  m_EditorClassIdentifier: Gameplay::DeckConfig
+  Blue:
+  - {fileID: 11400000, guid: 397b9c6ea789f2d498c52474e4f9c9b5, type: 2}
+  - {fileID: 11400000, guid: 38a72cda9457c4f4ebebc1147e41fdf5, type: 2}
+  - {fileID: 11400000, guid: b30de9a9b5de7384e92e7121f21b3b0f, type: 2}
+  - {fileID: 11400000, guid: fa88d62d973fb394abe6788d26a1cee1, type: 2}
+  Red:
+  - {fileID: 11400000, guid: a95f4a90884d91247a57d4846d99d6ec, type: 2}
+  - {fileID: 11400000, guid: ebedbcd3f4908c043ac5b12ce31ac32f, type: 2}
+  - {fileID: 11400000, guid: b0c2bcd404536224f9eb5362fdd6622e, type: 2}
+  - {fileID: 11400000, guid: 6bf554f346f9394428c850946433b22e, type: 2}

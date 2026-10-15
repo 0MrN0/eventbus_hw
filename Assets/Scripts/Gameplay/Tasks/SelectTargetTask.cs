@@ -1,26 +1,46 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Gameplay.CoreLoop;
+using Gameplay.Data;
+using Gameplay.Extensions;
 using Gameplay.Input;
+using Gameplay.Model;
 using Infrastructure.Pipelines;
-using UnityEngine;
+using UI;
 
 namespace Gameplay.Tasks
 {
     public sealed class SelectTargetTask : BaseTask
     {
+        private readonly TurnContext _turnContext;
         private readonly HeroClickInput _input;
-        private readonly TurnContext _context;
+        private readonly HeroRegistry _registry;
+        private readonly UIService _uiService;
 
-        public SelectTargetTask(HeroClickInput input, TurnContext context)
+        public SelectTargetTask(TurnContext turnContext, HeroClickInput input,
+                                HeroRegistry registry, UIService uiService)
         {
+            _turnContext = turnContext;
             _input = input;
-            _context = context;
+            _registry = registry;
+            _uiService = uiService;
         }
 
         public override async UniTask Run(CancellationToken cancelToken)
         {
-            _context.Target = await _input.WaitForClick(_context.EnemyPlayer, cancelToken);
+            if (!_turnContext.IsPlayerTurn)
+            {
+                return;
+            }
+
+            var enemyList = _uiService.GetListViewByTeam(_turnContext.OppositeTeam);
+            Entity target;
+            do
+            {
+                var view = await _input.WaitForClick(enemyList, cancelToken);
+                target = _registry.GetByView(view);
+            } while (!target.IsAlive());
+
+            _turnContext.Target = target;
         }
     }
 }

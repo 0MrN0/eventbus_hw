@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Infrastructure.Pipelines
 {
     public abstract class BasePipeline
     {
         public event Action Completed;
+        protected IReadOnlyList<BaseTask> Tasks => _tasks;
         private readonly List<BaseTask> _tasks = new();
 
         public void AddTask(BaseTask task)
@@ -33,12 +33,10 @@ namespace Infrastructure.Pipelines
 
         private void OnStarted()
         {
-            Debug.Log($"Pipeline {GetType().Name} started.");
         }
 
         private void OnCompleted()
         {
-            Debug.Log($"Pipeline {GetType().Name} completed.");
             Completed?.Invoke();
         }
     }

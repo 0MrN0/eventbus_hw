@@ -1828,6 +1828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991ba2ab627893b4ba4a23af724f92ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Installers::Installers.SceneInstaller
+  _deckConfig: {fileID: 11400000, guid: 6895a8b9e0c133146a833027c89574b9, type: 2}
 --- !u!114 &2128620981
 MonoBehaviour:
   m_ObjectHideFlags: 0

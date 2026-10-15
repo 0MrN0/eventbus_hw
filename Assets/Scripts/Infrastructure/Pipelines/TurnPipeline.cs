@@ -24,8 +24,12 @@ namespace Infrastructure.Pipelines
 
             while (!_isStopped && !cancelToken.IsCancellationRequested)
             {
-                await base.Run(cancelToken);
-                await _visualPipeline.Run(cancelToken);
+                foreach (var task in Tasks)
+                {
+                    await task.Run(cancelToken);
+                    await _visualPipeline.Run(cancelToken);
+                    if (_isStopped) break;
+                }
                 await UniTask.Yield(PlayerLoopTiming.Update, cancelToken);
             }
         }
