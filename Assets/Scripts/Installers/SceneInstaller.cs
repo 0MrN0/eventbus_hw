@@ -1,5 +1,6 @@
 using Gameplay.CoreLoop;
 using Gameplay.Data;
+using Gameplay.Enemy;
 using Gameplay.Events;
 using Gameplay.Input;
 using Gameplay.Model;
@@ -22,6 +23,7 @@ namespace Installers
             BindConfigs();
             BindPipelines();
             BindEventBus();
+            BindEnemyAi();
             Container.BindInterfacesAndSelfTo<GameEntryPoint>().AsSingle();
         }
 
@@ -60,6 +62,11 @@ namespace Installers
             Container.BindInterfacesTo<AttackEventHandler>().AsSingle();
             Container.BindInterfacesTo<DealDamageEventHandler>().AsSingle();
             Container.BindInterfacesTo<GameOverEventHandler>().AsSingle();
+        }
+
+        private void BindEnemyAi()
+        {
+            Container.Bind<IEnemyAi>().To<SillyEnemyAi>().AsSingle();
         }
     }
 }

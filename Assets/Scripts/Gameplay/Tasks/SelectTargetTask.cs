@@ -1,9 +1,9 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Gameplay.Data;
 using Gameplay.Extensions;
 using Gameplay.Input;
 using Gameplay.Model;
+using Gameplay.Enemy;
 using Infrastructure.Pipelines;
 using UI;
 
@@ -15,20 +15,23 @@ namespace Gameplay.Tasks
         private readonly HeroClickInput _input;
         private readonly HeroRegistry _registry;
         private readonly UIService _uiService;
+        private readonly IEnemyAi _enemy;
 
         public SelectTargetTask(TurnContext turnContext, HeroClickInput input,
-                                HeroRegistry registry, UIService uiService)
+                                HeroRegistry registry, UIService uiService, IEnemyAi enemy)
         {
             _turnContext = turnContext;
             _input = input;
             _registry = registry;
             _uiService = uiService;
+            _enemy = enemy;
         }
 
         public override async UniTask Run(CancellationToken cancelToken)
         {
             if (!_turnContext.IsPlayerTurn)
             {
+                _turnContext.Target = _enemy.ChooseTarget();
                 return;
             }
 
