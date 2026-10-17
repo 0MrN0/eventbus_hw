@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: R_Vamp
   m_EditorClassIdentifier: Gameplay::HeroConfig
   <Icon>k__BackingField: {fileID: 21300000, guid: 778d4d7ee50594cd79059847cefca69a, type: 3}
-  <Team>k__BackingField:
-    Value: 1
   <Health>k__BackingField:
     Max: 22
     Current: 0
   <AttackDamage>k__BackingField:
     Value: 6
+  Abilities:
+  - rid: 217761973881274447
+  references:
+    version: 2
+    RefIds:
+    - rid: 217761973881274447
+      type: {class: HealthStealingAbilityProvider, ns: Gameplay.Model, asm: Gameplay}
+      data:
+        Value:
+          Probability: 0.5

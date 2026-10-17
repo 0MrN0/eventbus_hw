@@ -42,6 +42,11 @@ namespace Gameplay.CoreLoop
                 hero.Set(new Health { Max = configs[i].Health.Max, Current = configs[i].Health.Max });
                 hero.Set(new AttackDamage { Value = configs[i].AttackDamage.Value });
 
+                foreach (var provider in configs[i].Abilities)
+                {
+                    provider?.Install(hero);
+                }
+
                 view.SetIcon(configs[i].Icon);
                 view.SetStats(hero.GetStatsText());
                 view.SetActive(false);

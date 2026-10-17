@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: B_IceMage
   m_EditorClassIdentifier: Gameplay::HeroConfig
   <Icon>k__BackingField: {fileID: 21300000, guid: 2059f3310f8404adcac5457e5e772e52, type: 3}
-  <Team>k__BackingField:
-    Value: 0
   <Health>k__BackingField:
     Max: 50
     Current: 0
   <AttackDamage>k__BackingField:
     Value: 2
+  Abilities:
+  - rid: 217761973881274440
+  references:
+    version: 2
+    RefIds:
+    - rid: 217761973881274440
+      type: {class: StunAbilityProvider, ns: Gameplay.Model, asm: Gameplay}
+      data:
+        Value:
+          Turns: 1

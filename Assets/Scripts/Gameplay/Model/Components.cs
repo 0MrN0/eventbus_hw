@@ -44,7 +44,6 @@ namespace Gameplay.Model
     public struct HealthStealingAbility : IAbilityComponent
     {
         public float Probability;
-        public int HealValue;
     }
 
     [Serializable]
@@ -68,7 +67,7 @@ namespace Gameplay.Model
     [Serializable]
     public struct ImmuneStatus : IComponent
     {
-        public int TurnsLeft;
+        public int StrikesLeft;
     }
 
     [Serializable]
