@@ -15,9 +15,10 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 778d4d7ee50594cd79059847cefca69a, type: 3}
   <Health>k__BackingField:
     Max: 22
-    Current: 0
+    Current: 22
   <AttackDamage>k__BackingField:
     Value: 6
+  <Name>k__BackingField: Vamp
   Abilities:
   - rid: 217761973881274447
   references:

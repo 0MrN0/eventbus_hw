@@ -15,9 +15,10 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 2059f3310f8404adcac5457e5e772e52, type: 3}
   <Health>k__BackingField:
     Max: 50
-    Current: 0
+    Current: 50
   <AttackDamage>k__BackingField:
     Value: 2
+  <Name>k__BackingField: IceMage
   Abilities:
   - rid: 217761973881274440
   references:

@@ -4,6 +4,7 @@ using Gameplay.Enemy;
 using Gameplay.Events;
 using Gameplay.Input;
 using Gameplay.Model;
+using Gameplay.Random;
 using Gameplay.Tasks;
 using Infrastructure.EventBus;
 using Infrastructure.Pipelines;
@@ -31,6 +32,7 @@ namespace Installers
         {
             Container.Bind<UIService>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<HeroClickInput>().AsSingle();
+            Container.Bind<IRandomService>().To<RandomService>().AsSingle();
         }
 
         private void BindConfigs()
@@ -48,6 +50,7 @@ namespace Installers
 
             Container.Bind<StartTurnTask>().AsSingle();
             Container.Bind<SelectTargetTask>().AsSingle();
+            Container.Bind<ResolveMissTask>().AsSingle();
             Container.Bind<AttackTask>().AsSingle();
             Container.Bind<EndTurnTask>().AsSingle();
         }
@@ -57,10 +60,19 @@ namespace Installers
             Container.Bind<IEventBus>().To<ZenjectEventBus>().AsSingle();
             SignalBusInstaller.Install(Container);
             Container.DeclareSignal<AttackEvent>();
+            Container.DeclareSignal<BackStrikeEvent>();
+            Container.DeclareSignal<AfterAttackEvent>();
             Container.DeclareSignal<DealDamageEvent>();
+            Container.DeclareSignal<HealEvent>();
             Container.DeclareSignal<GameOverEvent>();
             Container.BindInterfacesTo<AttackEventHandler>().AsSingle();
+            Container.BindInterfacesTo<BackStrikeEventHandler>().AsSingle();
             Container.BindInterfacesTo<DealDamageEventHandler>().AsSingle();
+            Container.BindInterfacesTo<HealEventHandler>().AsSingle();
+            Container.BindInterfacesTo<HealAbilityHandler>().AsSingle();
+            Container.BindInterfacesTo<ExtraAttackAbilityHandler>().AsSingle();
+            Container.BindInterfacesTo<HealthStealAbilityHandler>().AsSingle();
+            Container.BindInterfacesTo<StunAbilityHandler>().AsSingle();
             Container.BindInterfacesTo<GameOverEventHandler>().AsSingle();
         }
 

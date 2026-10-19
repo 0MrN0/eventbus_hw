@@ -15,9 +15,10 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 6f26327dca38144098a004666cd0e3b3, type: 3}
   <Health>k__BackingField:
     Max: 30
-    Current: 0
+    Current: 30
   <AttackDamage>k__BackingField:
     Value: 30
+  <Name>k__BackingField: Paladin
   Abilities:
   - rid: 217761973881274442
   references:

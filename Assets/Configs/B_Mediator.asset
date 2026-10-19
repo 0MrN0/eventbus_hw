@@ -15,9 +15,10 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 16ea401ccf7c8420988360f8fc9fb55d, type: 3}
   <Health>k__BackingField:
     Max: 25
-    Current: 0
+    Current: 25
   <AttackDamage>k__BackingField:
     Value: 4
+  <Name>k__BackingField: Mediator
   Abilities:
   - rid: 217761973881274441
   references:

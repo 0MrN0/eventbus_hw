@@ -29,6 +29,8 @@ namespace Gameplay.Tasks
 
         public override async UniTask Run(CancellationToken cancelToken)
         {
+            if (_turnContext.SkipTurn) return;
+
             if (!_turnContext.IsPlayerTurn)
             {
                 _turnContext.Target = _enemy.ChooseTarget();

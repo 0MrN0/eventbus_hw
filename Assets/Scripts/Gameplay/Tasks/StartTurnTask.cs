@@ -1,3 +1,4 @@
+using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.Extensions;
@@ -32,6 +33,14 @@ namespace Gameplay.Tasks
                                 ?? throw new System.Exception($"{nameof(StartTurnTask)}: no alive heroes in {_turnContext.ActiveTeam}");
             _turnContext.Attacker = attacker;
             _turnContext.Target = null;
+            _turnContext.SkipTurn = false;
+
+            if (_turnContext.Attacker.TryGet<StunStatus>(out var ability))
+            {
+                _turnContext.SkipTurn = true;
+                ability.TurnsLeft--;
+                Debug.Log($"{_turnContext.Attacker.Get<NameComponent>().Value} is stunned. Turns left: {ability.TurnsLeft}");
+            }
 
             _visualPipeline.AddTask(new RedrawHeroOutlineTask(attacker.GetView(), true));
             _uiService.GetListViewByTeam(_turnContext.ActiveTeam).SetActive(true);

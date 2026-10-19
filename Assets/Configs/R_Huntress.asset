@@ -15,9 +15,10 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 676aec1b4f9ee4b599aeffc9a6703a1d, type: 3}
   <Health>k__BackingField:
     Max: 25
-    Current: 0
+    Current: 25
   <AttackDamage>k__BackingField:
     Value: 10
+  <Name>k__BackingField: Huntress
   Abilities:
   - rid: 217761973881274445
   references:

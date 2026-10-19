@@ -15,9 +15,10 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: f6d397e5cec894f3cbbb28a24524a3db, type: 3}
   <Health>k__BackingField:
     Max: 35
-    Current: 0
+    Current: 35
   <AttackDamage>k__BackingField:
     Value: 7
+  <Name>k__BackingField: Electro
   Abilities:
   - rid: 217761973881274439
   references:

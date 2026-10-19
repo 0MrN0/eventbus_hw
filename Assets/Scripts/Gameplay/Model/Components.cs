@@ -80,4 +80,9 @@ namespace Gameplay.Model
     {
         public HeroView Value;
     }
+
+    public struct NameComponent : IComponent
+    {
+        public string Value;
+    }
 }

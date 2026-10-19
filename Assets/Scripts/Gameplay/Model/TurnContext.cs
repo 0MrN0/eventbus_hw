@@ -13,6 +13,7 @@ namespace Gameplay.Model
 
         public Entity Attacker;
         public Entity Target;
+        public bool SkipTurn;
     }
 
 }

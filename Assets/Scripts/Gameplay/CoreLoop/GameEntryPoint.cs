@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Gameplay.Data;
 using Gameplay.Model;
 using Gameplay.Tasks;
 using Infrastructure.Pipelines;
@@ -17,6 +16,7 @@ namespace Gameplay.CoreLoop
 
         private readonly StartTurnTask _startTurnTask;
         private readonly SelectTargetTask _selectTargetTask;
+        private readonly ResolveMissTask _resolveMissTask;
         private readonly AttackTask _attackTask;
         private readonly EndTurnTask _endTurnTask;
         private readonly CancellationTokenSource _cts = new();
@@ -27,7 +27,8 @@ namespace Gameplay.CoreLoop
                                 StartTurnTask startTurnTask,
                                 SelectTargetTask selectTargetTask,
                                 AttackTask attackTask,
-                                EndTurnTask endTurnTask)
+                                EndTurnTask endTurnTask,
+                                ResolveMissTask resolveMissTask)
         {
             _turnPipeline = turnPipeline;
             _turnContext = turnContext;
@@ -36,6 +37,7 @@ namespace Gameplay.CoreLoop
             _selectTargetTask = selectTargetTask;
             _attackTask = attackTask;
             _endTurnTask = endTurnTask;
+            _resolveMissTask = resolveMissTask;
         }
 
         public void Initialize()
@@ -45,6 +47,7 @@ namespace Gameplay.CoreLoop
 
             _turnPipeline.AddTask(_startTurnTask);
             _turnPipeline.AddTask(_selectTargetTask);
+            _turnPipeline.AddTask(_resolveMissTask);
             _turnPipeline.AddTask(_attackTask);
             _turnPipeline.AddTask(_endTurnTask);
 

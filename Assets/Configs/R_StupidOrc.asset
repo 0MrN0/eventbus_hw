@@ -15,9 +15,10 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: c1be5b39c416140b4a270be385402427, type: 3}
   <Health>k__BackingField:
     Max: 32
-    Current: 0
+    Current: 32
   <AttackDamage>k__BackingField:
     Value: 8
+  <Name>k__BackingField: Orc
   Abilities:
   - rid: 217761973881274446
   references:
@@ -27,4 +28,4 @@ MonoBehaviour:
       type: {class: MissAbilityProvider, ns: Gameplay.Model, asm: Gameplay}
       data:
         Value:
-          Probability: 0.5
+          Probability: 1

@@ -37,14 +37,14 @@ namespace Gameplay.Model
             {
                 var idx = (start + i) % list.Count;
                 if (!list[idx].IsAlive()) continue;
-                
+
                 _pointers[team] = idx + 1;
                 return list[idx];
             }
             return null;
         }
 
-        public IReadOnlyList<Entity> GetAliveTeam(TeamColor team)
+        public List<Entity> GetAliveTeam(TeamColor team)
         {
             if (!_teams.ContainsKey(team))
             {
