@@ -10,9 +10,9 @@ namespace Gameplay.CoreLoop
     {
         private readonly HeroRegistry _registry;
         private readonly UIService _uiService;
-        private readonly DeckConfig _deckConfig;
+        private readonly GameConfig _deckConfig;
 
-        public HeroSpawner(HeroRegistry registry, UIService uiService, DeckConfig deckConfig)
+        public HeroSpawner(HeroRegistry registry, UIService uiService, GameConfig deckConfig)
         {
             _registry = registry;
             _uiService = uiService;

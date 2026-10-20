@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0eb6794ee754a147888d889291b99cb, type: 3}
-  m_Name: _DeckConfig
+  m_Name: _GameConfig
   m_EditorClassIdentifier: Gameplay::DeckConfig
   PlayerColor: 1
   Blue:

@@ -1,3 +1,7 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using Gameplay.Data;
+using Gameplay.Extensions;
 using Gameplay.Model;
 
 namespace Gameplay.Enemy
@@ -5,17 +9,18 @@ namespace Gameplay.Enemy
     public sealed class SillyEnemyAi : IEnemyAi
     {
         private readonly HeroRegistry _registry;
-        private readonly TurnContext _context;
+        private readonly GameConfig _deckConfig;
 
-        public SillyEnemyAi(HeroRegistry registry, TurnContext context)
+        public SillyEnemyAi(HeroRegistry registry, GameConfig deckConfig)
         {
             _registry = registry;
-            _context = context;
+            _deckConfig = deckConfig;
         }
 
-        public Entity ChooseTarget()
+        public async UniTask<Entity> SelectTarget(Entity attacker, CancellationToken cancelToken)
         {
-            return _registry.GetAliveTeam(_context.OppositeTeam)[0];
+            await UniTask.Delay(_deckConfig.EnemyThinkDelayMs, cancellationToken: cancelToken);
+            return _registry.GetAliveTeam(attacker.GetTeam().Opposite())[0];
         }
     }
 }

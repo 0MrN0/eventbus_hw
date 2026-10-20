@@ -1,9 +1,8 @@
-using Gameplay.Model;
+using Gameplay.Targeting;
 
 namespace Gameplay.Enemy
 {
-    public interface IEnemyAi
+    public interface IEnemyAi : ITargetSelector
     {
-        Entity ChooseTarget();
     }
 }

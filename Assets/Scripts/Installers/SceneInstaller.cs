@@ -5,6 +5,7 @@ using Gameplay.Events;
 using Gameplay.Input;
 using Gameplay.Model;
 using Gameplay.Random;
+using Gameplay.Targeting;
 using Gameplay.Tasks;
 using Infrastructure.EventBus;
 using Infrastructure.Pipelines;
@@ -16,7 +17,7 @@ namespace Installers
 {
     public sealed class SceneInstaller : MonoInstaller
     {
-        [SerializeField] private DeckConfig _deckConfig;
+        [SerializeField] private GameConfig _deckConfig;
 
         public override void InstallBindings()
         {
@@ -24,7 +25,7 @@ namespace Installers
             BindConfigs();
             BindPipelines();
             BindEventBus();
-            BindEnemyAi();
+            BindTargetSelectors();
             Container.BindInterfacesAndSelfTo<GameEntryPoint>().AsSingle();
         }
 
@@ -82,9 +83,11 @@ namespace Installers
             Container.BindInterfacesTo<GameOverEventHandler>().AsSingle();
         }
 
-        private void BindEnemyAi()
+        private void BindTargetSelectors()
         {
+            Container.Bind<PlayerTargetSelector>().AsSingle();
             Container.Bind<IEnemyAi>().To<SillyEnemyAi>().AsSingle();
+            Container.Bind<TargetSelectorProvider>().AsSingle();
         }
     }
 }

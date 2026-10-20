@@ -14,7 +14,7 @@ namespace Gameplay.CoreLoop
         private readonly TurnPipeline _turnPipeline;
         private readonly TurnContext _turnContext;
         private readonly HeroSpawner _spawner;
-        private readonly DeckConfig _deckConfig;
+        private readonly GameConfig _deckConfig;
 
         private readonly StartTurnTask _startTurnTask;
         private readonly SelectTargetTask _selectTargetTask;
@@ -32,7 +32,7 @@ namespace Gameplay.CoreLoop
                                 AttackTask attackTask,
                                 EndTurnTask endTurnTask,
                                 ResolveTargetTask resolveTargetTask,
-                                DeckConfig deckConfig)
+                                GameConfig deckConfig)
         {
             _turnPipeline = turnPipeline;
             _turnContext = turnContext;
