@@ -22,7 +22,7 @@ namespace Gameplay.Events
             var targets = _random.PickRandom(_registry.GetAliveTeam(evt.Target.Get<TeamComponent>().Value), ability.TargetsCount);
             foreach (var target in targets)
             {
-                EventBus.RaiseEvent(new DealDamageEvent(ability.Damage, target, evt.Attacker));
+                EventBus.RaiseEvent(new DamageRequestEvent(ability.Damage, target, evt.Attacker));
             }
         }
     }

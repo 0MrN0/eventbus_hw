@@ -7,13 +7,13 @@ using Infrastructure.Pipelines;
 
 namespace Gameplay.Tasks
 {
-    public sealed class ResolveMissTask : BaseTask
+    public sealed class ResolveTargetTask : BaseTask
     {
         private readonly TurnContext _turnContext;
         private readonly IRandomService _random;
         private readonly HeroRegistry _registry;
 
-        public ResolveMissTask(TurnContext turnContext, IRandomService random, HeroRegistry registry)
+        public ResolveTargetTask(TurnContext turnContext, IRandomService random, HeroRegistry registry)
         {
             _turnContext = turnContext;
             _random = random;

@@ -16,7 +16,7 @@ namespace Gameplay.Events
                 return;
             }
 
-            EventBus.RaiseEvent(new DealDamageEvent(evt.Attacker.Get<AttackDamage>().Value, evt.Target, evt.Attacker));
+            EventBus.RaiseEvent(new DamageRequestEvent(evt.Attacker.Get<AttackDamage>().Value, evt.Target, evt.Attacker));
         }
     }
 }

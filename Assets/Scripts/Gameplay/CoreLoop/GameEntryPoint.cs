@@ -18,7 +18,7 @@ namespace Gameplay.CoreLoop
 
         private readonly StartTurnTask _startTurnTask;
         private readonly SelectTargetTask _selectTargetTask;
-        private readonly ResolveMissTask _resolveMissTask;
+        private readonly ResolveTargetTask _resolveTargetTask;
         private readonly AttackTask _attackTask;
         private readonly EndTurnTask _endTurnTask;
 
@@ -31,7 +31,7 @@ namespace Gameplay.CoreLoop
                                 SelectTargetTask selectTargetTask,
                                 AttackTask attackTask,
                                 EndTurnTask endTurnTask,
-                                ResolveMissTask resolveMissTask,
+                                ResolveTargetTask resolveTargetTask,
                                 DeckConfig deckConfig)
         {
             _turnPipeline = turnPipeline;
@@ -41,7 +41,7 @@ namespace Gameplay.CoreLoop
             _selectTargetTask = selectTargetTask;
             _attackTask = attackTask;
             _endTurnTask = endTurnTask;
-            _resolveMissTask = resolveMissTask;
+            _resolveTargetTask = resolveTargetTask;
             _deckConfig = deckConfig;
 
         }
@@ -54,7 +54,7 @@ namespace Gameplay.CoreLoop
 
             _turnPipeline.AddTask(_startTurnTask);
             _turnPipeline.AddTask(_selectTargetTask);
-            _turnPipeline.AddTask(_resolveMissTask);
+            _turnPipeline.AddTask(_resolveTargetTask);
             _turnPipeline.AddTask(_attackTask);
             _turnPipeline.AddTask(_endTurnTask);
 

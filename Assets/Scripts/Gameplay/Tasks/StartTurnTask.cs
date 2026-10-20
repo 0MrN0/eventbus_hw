@@ -1,8 +1,10 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Gameplay.Events;
 using Gameplay.Extensions;
 using Gameplay.Model;
 using Gameplay.Tasks.Visuals;
+using Infrastructure.EventBus;
 using Infrastructure.Pipelines;
 using UI;
 
@@ -14,16 +16,19 @@ namespace Gameplay.Tasks
         private readonly UIService _uiService;
         private readonly HeroRegistry _registry;
         private readonly VisualPipeline _visualPipeline;
+        private readonly IEventBus _eventBus;
 
         public StartTurnTask(TurnContext turnContext,
                              UIService uiService,
                              HeroRegistry registry,
-                             VisualPipeline visualPipeline)
+                             VisualPipeline visualPipeline,
+                             IEventBus eventBus)
         {
             _turnContext = turnContext;
             _uiService = uiService;
             _registry = registry;
             _visualPipeline = visualPipeline;
+            _eventBus = eventBus;
         }
 
         public override UniTask Run(CancellationToken cancelToken)
@@ -34,21 +39,11 @@ namespace Gameplay.Tasks
             _turnContext.Target = null;
             _turnContext.SkipTurn = false;
 
-            if (_turnContext.Attacker.TryGet<StunStatus>(out var ability))
-            {
-                _turnContext.SkipTurn = true;
-                ability.TurnsLeft--;
-                _turnContext.Attacker.Set(ability);
-                if (ability.TurnsLeft <= 0)
-                {
-                    _turnContext.Attacker.Remove<StunStatus>();
-                }
-            }
-
             _visualPipeline.AddTask(new RedrawHeroOutlineTask(attacker.GetView(), true));
             _uiService.GetListViewByTeam(_turnContext.ActiveTeam).SetActive(true);
             _uiService.GetListViewByTeam(_turnContext.OppositeTeam).SetActive(false);
 
+            _eventBus.RaiseEvent(new TurnStartedEvent(_turnContext.Attacker));
             return UniTask.CompletedTask;
         }
     }

@@ -50,7 +50,7 @@ namespace Installers
 
             Container.Bind<StartTurnTask>().AsSingle();
             Container.Bind<SelectTargetTask>().AsSingle();
-            Container.Bind<ResolveMissTask>().AsSingle();
+            Container.Bind<ResolveTargetTask>().AsSingle();
             Container.Bind<AttackTask>().AsSingle();
             Container.Bind<EndTurnTask>().AsSingle();
         }
@@ -59,20 +59,26 @@ namespace Installers
         {
             Container.Bind<IEventBus>().To<ZenjectEventBus>().AsSingle();
             SignalBusInstaller.Install(Container);
+            Container.DeclareSignal<TurnStartedEvent>();
             Container.DeclareSignal<AttackEvent>();
             Container.DeclareSignal<BackStrikeEvent>();
             Container.DeclareSignal<AfterAttackEvent>();
+            Container.DeclareSignal<DamageRequestEvent>();
+            Container.DeclareSignal<BeforeDamageEvent>();
             Container.DeclareSignal<DealDamageEvent>();
             Container.DeclareSignal<HealEvent>();
             Container.DeclareSignal<GameOverEvent>();
             Container.BindInterfacesTo<AttackEventHandler>().AsSingle();
             Container.BindInterfacesTo<BackStrikeEventHandler>().AsSingle();
+            Container.BindInterfacesTo<DamageRequestHandler>().AsSingle();
             Container.BindInterfacesTo<DealDamageEventHandler>().AsSingle();
             Container.BindInterfacesTo<HealEventHandler>().AsSingle();
             Container.BindInterfacesTo<HealAbilityHandler>().AsSingle();
             Container.BindInterfacesTo<ExtraAttackAbilityHandler>().AsSingle();
             Container.BindInterfacesTo<HealthStealAbilityHandler>().AsSingle();
             Container.BindInterfacesTo<StunAbilityHandler>().AsSingle();
+            Container.BindInterfacesTo<StunStatusHandler>().AsSingle();
+            Container.BindInterfacesTo<ImmuneStatusHandler>().AsSingle();
             Container.BindInterfacesTo<GameOverEventHandler>().AsSingle();
         }
 
