@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Gameplay.Data;
 using Gameplay.Model;
 using Gameplay.Tasks;
 using Infrastructure.Pipelines;
@@ -13,12 +14,14 @@ namespace Gameplay.CoreLoop
         private readonly TurnPipeline _turnPipeline;
         private readonly TurnContext _turnContext;
         private readonly HeroSpawner _spawner;
+        private readonly DeckConfig _deckConfig;
 
         private readonly StartTurnTask _startTurnTask;
         private readonly SelectTargetTask _selectTargetTask;
         private readonly ResolveMissTask _resolveMissTask;
         private readonly AttackTask _attackTask;
         private readonly EndTurnTask _endTurnTask;
+
         private readonly CancellationTokenSource _cts = new();
 
         public GameEntryPoint(TurnPipeline turnPipeline,
@@ -28,7 +31,8 @@ namespace Gameplay.CoreLoop
                                 SelectTargetTask selectTargetTask,
                                 AttackTask attackTask,
                                 EndTurnTask endTurnTask,
-                                ResolveMissTask resolveMissTask)
+                                ResolveMissTask resolveMissTask,
+                                DeckConfig deckConfig)
         {
             _turnPipeline = turnPipeline;
             _turnContext = turnContext;
@@ -38,11 +42,14 @@ namespace Gameplay.CoreLoop
             _attackTask = attackTask;
             _endTurnTask = endTurnTask;
             _resolveMissTask = resolveMissTask;
+            _deckConfig = deckConfig;
+
         }
 
         public void Initialize()
         {
             _spawner.Spawn();
+            _turnContext.PlayerTeam = _deckConfig.PlayerColor;
             _turnContext.ActiveTeam = _turnContext.PlayerTeam;
 
             _turnPipeline.AddTask(_startTurnTask);

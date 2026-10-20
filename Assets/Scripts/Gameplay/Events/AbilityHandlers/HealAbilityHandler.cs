@@ -21,7 +21,7 @@ namespace Gameplay.Events
             if (!evt.Attacker.TryGet<HealAbility>(out var ability)) return;
 
             var healCandidates = _registry.GetAliveTeam(evt.Attacker.GetTeam());
-            healCandidates.Remove(evt.Attacker);
+            healCandidates.RemoveAll(e => e == evt.Attacker || e.Get<Health>().Current >= e.Get<Health>().Max);
             if (healCandidates.Count == 0) return;
 
             var healTargets = _random.PickRandom(healCandidates, ability.TargetsCount);

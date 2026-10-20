@@ -18,6 +18,8 @@ namespace Gameplay.Events
 
         protected override void Handle(HealEvent evt)
         {
+            if (!evt.Target.IsAlive()) return;
+
             var health = evt.Target.Get<Health>();
             health.Current = Mathf.Min(health.Current + evt.HealAmount, health.Max);
             evt.Target.Set(health);

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0eb6794ee754a147888d889291b99cb, type: 3}
   m_Name: _DeckConfig
   m_EditorClassIdentifier: Gameplay::DeckConfig
+  PlayerColor: 1
   Blue:
-  - {fileID: 11400000, guid: fa88d62d973fb394abe6788d26a1cee1, type: 2}
   - {fileID: 11400000, guid: 397b9c6ea789f2d498c52474e4f9c9b5, type: 2}
+  - {fileID: 11400000, guid: fa88d62d973fb394abe6788d26a1cee1, type: 2}
   - {fileID: 11400000, guid: 38a72cda9457c4f4ebebc1147e41fdf5, type: 2}
   - {fileID: 11400000, guid: b30de9a9b5de7384e92e7121f21b3b0f, type: 2}
   Red:

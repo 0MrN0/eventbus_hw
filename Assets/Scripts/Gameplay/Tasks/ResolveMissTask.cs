@@ -4,7 +4,6 @@ using Gameplay.Extensions;
 using Gameplay.Model;
 using Gameplay.Random;
 using Infrastructure.Pipelines;
-using UnityEngine;
 
 namespace Gameplay.Tasks
 {
@@ -39,12 +38,10 @@ namespace Gameplay.Tasks
             if (possibleTargets.Count == 0)
             {
                 _turnContext.Target = null;
-                Debug.Log($"{_turnContext.Attacker.Get<NameComponent>().Value} missed with no new target. Attack skipped.");
             }
             else
             {
                 _turnContext.Target = _random.PickRandom(possibleTargets, 1)[0];
-                Debug.Log($"{_turnContext.Attacker.Get<NameComponent>().Value} missed and have new target: {_turnContext.Target.Get<NameComponent>().Value}.");
             }
 
             return UniTask.CompletedTask;

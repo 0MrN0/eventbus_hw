@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.Extensions;
@@ -39,7 +38,11 @@ namespace Gameplay.Tasks
             {
                 _turnContext.SkipTurn = true;
                 ability.TurnsLeft--;
-                Debug.Log($"{_turnContext.Attacker.Get<NameComponent>().Value} is stunned. Turns left: {ability.TurnsLeft}");
+                _turnContext.Attacker.Set(ability);
+                if (ability.TurnsLeft <= 0)
+                {
+                    _turnContext.Attacker.Remove<StunStatus>();
+                }
             }
 
             _visualPipeline.AddTask(new RedrawHeroOutlineTask(attacker.GetView(), true));

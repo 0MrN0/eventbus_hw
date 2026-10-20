@@ -18,10 +18,11 @@ namespace Gameplay.Events
 
         protected override void Handle(DealDamageEvent evt)
         {
+            _visualPipeline.AddTask(new AnimateAttackTask(evt.Attacker.GetView(), evt.Target.GetView()));
             if (evt.Target.TryGet<ImmuneStatus>(out var immune))
             {
                 immune.StrikesLeft -= 1;
-                Debug.Log($"{evt.Target.Get<NameComponent>().Value} avoided damage. Strikes left {immune.StrikesLeft}");
+                evt.Target.Set(immune);
                 if (immune.StrikesLeft <= 0)
                 {
                     evt.Target.Remove<ImmuneStatus>();
@@ -32,7 +33,6 @@ namespace Gameplay.Events
             var health = evt.Target.Get<Health>();
             health.Current = Mathf.Max(0, health.Current - evt.Damage);
             evt.Target.Set(health);
-            _visualPipeline.AddTask(new AnimateAttackTask(evt.Attacker.GetView(), evt.Target.GetView()));
             _visualPipeline.AddTask(new UpdateStatsTask(evt.Target));
         }
     }

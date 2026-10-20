@@ -1,4 +1,3 @@
-using UnityEngine;
 using Gameplay.Model;
 using Infrastructure.EventBus;
 
@@ -18,7 +17,6 @@ namespace Gameplay.Events
             }
 
             evt.Target.Set(new StunStatus { TurnsLeft = ability.Turns });
-            Debug.Log($"{evt.Attacker.Get<NameComponent>().Value} stunned {evt.Target.Get<NameComponent>().Value}");
         }
     }
 }

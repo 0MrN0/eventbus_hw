@@ -28,4 +28,4 @@ MonoBehaviour:
       type: {class: MissAbilityProvider, ns: Gameplay.Model, asm: Gameplay}
       data:
         Value:
-          Probability: 1
+          Probability: 0.5

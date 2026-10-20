@@ -1,4 +1,3 @@
-using UnityEngine;
 using Gameplay.Model;
 using Gameplay.Random;
 using Infrastructure.EventBus;
@@ -24,7 +23,6 @@ namespace Gameplay.Events
             foreach (var target in targets)
             {
                 EventBus.RaiseEvent(new DealDamageEvent(ability.Damage, target, evt.Attacker));
-                Debug.Log($"{evt.Attacker.Get<NameComponent>().Value} attacked again {target.Get<NameComponent>().Value} at {ability.Damage}");
             }
         }
     }
