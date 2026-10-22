@@ -1,8 +1,10 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Gameplay.Events;
 using Gameplay.Extensions;
 using Gameplay.Model;
 using Gameplay.Random;
+using Infrastructure.EventBus;
 using Infrastructure.Pipelines;
 
 namespace Gameplay.Tasks
@@ -12,12 +14,14 @@ namespace Gameplay.Tasks
         private readonly TurnContext _turnContext;
         private readonly IRandomService _random;
         private readonly HeroRegistry _registry;
+        private readonly IEventBus _eventBus;
 
-        public ResolveTargetTask(TurnContext turnContext, IRandomService random, HeroRegistry registry)
+        public ResolveTargetTask(TurnContext turnContext, IRandomService random, HeroRegistry registry, IEventBus eventBus)
         {
             _turnContext = turnContext;
             _random = random;
             _registry = registry;
+            _eventBus = eventBus;
         }
 
 
@@ -31,7 +35,9 @@ namespace Gameplay.Tasks
                 return UniTask.CompletedTask;
             }
 
-            var oppositeTeam = _turnContext.Attacker.Get<TeamComponent>().Value.Opposite();
+            _eventBus.RaiseEvent(new AbilityTriggeredEvent(_turnContext.Attacker));
+
+            var oppositeTeam =_turnContext.Attacker.Get<TeamComponent>().Value.Opposite();
             var possibleTargets = _registry.GetAliveTeam(oppositeTeam);
             possibleTargets.Remove(_turnContext.Target);
 

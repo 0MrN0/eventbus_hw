@@ -39,6 +39,7 @@ namespace Gameplay.CoreLoop
 
                 hero.Set(new ViewComponent { Value = view });
                 hero.Set(new NameComponent { Value = configs[i].Name });
+                hero.Set(new SoundsComponent { Value = configs[i].Sounds });
                 hero.Set(new TeamComponent { Value = color });
                 hero.Set(new Health { Max = configs[i].Health.Max, Current = configs[i].Health.Current });
                 hero.Set(new AttackDamage { Value = configs[i].AttackDamage.Value });

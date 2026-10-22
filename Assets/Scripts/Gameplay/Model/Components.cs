@@ -81,6 +81,11 @@ namespace Gameplay.Model
         public HeroView Value;
     }
 
+    public struct SoundsComponent : IComponent
+    {
+        public HeroConfig.HeroSounds Value;
+    }
+
     public struct NameComponent : IComponent
     {
         public string Value;

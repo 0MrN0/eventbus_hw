@@ -16,6 +16,7 @@ namespace Gameplay.Events
                 return;
             }
 
+            EventBus.RaiseEvent(new AbilityTriggeredEvent(evt.Attacker));
             evt.Target.Set(new StunStatus { TurnsLeft = ability.Turns });
         }
     }

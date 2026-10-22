@@ -13,6 +13,7 @@ namespace Gameplay.Events
         {
             if (!evt.Target.TryGet<ImmuneStatus>(out var immune)) return;
 
+            EventBus.RaiseEvent(new AbilityTriggeredEvent(evt.Target));
             evt.Damage = 0;
             immune.StrikesLeft--;
             evt.Target.Set(immune);

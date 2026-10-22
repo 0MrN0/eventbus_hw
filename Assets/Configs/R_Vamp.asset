@@ -19,6 +19,14 @@ MonoBehaviour:
   <AttackDamage>k__BackingField:
     Value: 6
   <Name>k__BackingField: Vamp
+  <Sounds>k__BackingField:
+    StartTurn:
+    - {fileID: 8300000, guid: 9d1d73939dcbe4e8890062bb45c775c5, type: 3}
+    - {fileID: 8300000, guid: 5e06a2876563e4176b0f2903d2c1b1d1, type: 3}
+    - {fileID: 8300000, guid: 72ec728a021244cd9b54a2fb92ef45f3, type: 3}
+    Ability: []
+    LowHealth: {fileID: 8300000, guid: 4dc3f4ce2f8594160a8aee0a7fdc5a07, type: 3}
+    Death: {fileID: 8300000, guid: b6800c1defee546798aeed2f7a581be7, type: 3}
   Abilities:
   - rid: 217761973881274447
   references:

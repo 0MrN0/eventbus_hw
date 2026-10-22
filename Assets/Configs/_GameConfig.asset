@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: _GameConfig
   m_EditorClassIdentifier: Gameplay::DeckConfig
   PlayerColor: 1
+  EnemyThinkDelayMs: 0
   Blue:
   - {fileID: 11400000, guid: 397b9c6ea789f2d498c52474e4f9c9b5, type: 2}
   - {fileID: 11400000, guid: fa88d62d973fb394abe6788d26a1cee1, type: 2}

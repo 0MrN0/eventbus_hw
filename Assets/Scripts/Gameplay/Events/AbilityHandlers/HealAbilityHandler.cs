@@ -25,6 +25,7 @@ namespace Gameplay.Events
             if (healCandidates.Count == 0) return;
 
             var healTargets = _random.PickRandom(healCandidates, ability.TargetsCount);
+            EventBus.RaiseEvent(new AbilityTriggeredEvent(evt.Attacker));
             foreach (var target in healTargets)
             {
                 EventBus.RaiseEvent(new HealEvent(target, ability.Value, evt.Attacker));

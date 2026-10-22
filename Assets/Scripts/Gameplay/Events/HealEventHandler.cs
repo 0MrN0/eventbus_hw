@@ -21,10 +21,13 @@ namespace Gameplay.Events
             if (!evt.Target.IsAlive()) return;
 
             var health = evt.Target.Get<Health>();
+            var healthBefore = health.Current;
             health.Current = Mathf.Min(health.Current + evt.HealAmount, health.Max);
             evt.Target.Set(health);
             _visualPipeline.AddTask(new AnimateAttackTask(evt.Attacker.GetView(), evt.Target.GetView()));
             _visualPipeline.AddTask(new UpdateStatsTask(evt.Target));
+
+            EventBus.RaiseEvent(new HealthChangedEvent(evt.Target, healthBefore, health.Current));
         }
     }
 }

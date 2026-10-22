@@ -19,10 +19,13 @@ namespace Gameplay.Events
         protected override void Handle(DealDamageEvent evt)
         {
             var health = evt.Target.Get<Health>();
+            var healthBefore = health.Current;
             health.Current = Mathf.Max(0, health.Current - evt.Damage);
             evt.Target.Set(health);
             _visualPipeline.AddTask(new AnimateAttackTask(evt.Attacker.GetView(), evt.Target.GetView()));
             _visualPipeline.AddTask(new UpdateStatsTask(evt.Target));
+
+            EventBus.RaiseEvent(new HealthChangedEvent(evt.Target, healthBefore, health.Current));
         }
     }
 }

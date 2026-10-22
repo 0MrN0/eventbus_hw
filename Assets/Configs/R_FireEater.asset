@@ -19,6 +19,17 @@ MonoBehaviour:
   <AttackDamage>k__BackingField:
     Value: 3
   <Name>k__BackingField: FireEater
+  <Sounds>k__BackingField:
+    StartTurn:
+    - {fileID: 8300000, guid: 3b0eeec7c3abd42e484ac99b5b8ed794, type: 3}
+    - {fileID: 8300000, guid: fbf48d1898f2248fd9922ba1429d4b42, type: 3}
+    - {fileID: 8300000, guid: e4c3823ffca3f474ea4db4c4e741c794, type: 3}
+    - {fileID: 8300000, guid: 886bbc95762ec4b4e8e8a53bd6520b7e, type: 3}
+    - {fileID: 8300000, guid: 4c9ee245a544f44f2a0ab1c792044c67, type: 3}
+    Ability:
+    - {fileID: 8300000, guid: 9c3cb88de66244ea58fdef2aeac8a979, type: 3}
+    LowHealth: {fileID: 8300000, guid: c005d6e1b29e6408b931bb0c26dcfb1a, type: 3}
+    Death: {fileID: 8300000, guid: a2de2f87ac95a498f9859a5608963e0b, type: 3}
   Abilities:
   - rid: 217761973881274443
   references:

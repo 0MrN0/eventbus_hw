@@ -5,6 +5,7 @@ using Gameplay.Events;
 using Gameplay.Input;
 using Gameplay.Model;
 using Gameplay.Random;
+using Gameplay.Sound;
 using Gameplay.Targeting;
 using Gameplay.Tasks;
 using Infrastructure.EventBus;
@@ -34,6 +35,8 @@ namespace Installers
             Container.Bind<UIService>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<HeroClickInput>().AsSingle();
             Container.Bind<IRandomService>().To<RandomService>().AsSingle();
+            Container.Bind<AudioPlayer>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IAudioService>().To<AudioService>().AsSingle();
         }
 
         private void BindConfigs()
@@ -67,6 +70,8 @@ namespace Installers
             Container.DeclareSignal<DamageRequestEvent>();
             Container.DeclareSignal<BeforeDamageEvent>();
             Container.DeclareSignal<DealDamageEvent>();
+            Container.DeclareSignal<HealthChangedEvent>();
+            Container.DeclareSignal<AbilityTriggeredEvent>();
             Container.DeclareSignal<HealEvent>();
             Container.DeclareSignal<GameOverEvent>();
             Container.BindInterfacesTo<AttackEventHandler>().AsSingle();
@@ -81,6 +86,9 @@ namespace Installers
             Container.BindInterfacesTo<StunStatusHandler>().AsSingle();
             Container.BindInterfacesTo<ImmuneStatusHandler>().AsSingle();
             Container.BindInterfacesTo<GameOverEventHandler>().AsSingle();
+            Container.BindInterfacesTo<TurnStartedSoundHandler>().AsSingle();
+            Container.BindInterfacesTo<AbilitySoundHandler>().AsSingle();
+            Container.BindInterfacesTo<HealthSoundHandler>().AsSingle();
         }
 
         private void BindTargetSelectors()

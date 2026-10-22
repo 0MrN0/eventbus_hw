@@ -13,6 +13,7 @@ namespace Gameplay.Events
         {
             if (evt.Target.Has<BackStrikeImmunAbility>())
             {
+                EventBus.RaiseEvent(new AbilityTriggeredEvent(evt.Target));
                 return;
             }
 

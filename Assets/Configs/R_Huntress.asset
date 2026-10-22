@@ -19,6 +19,15 @@ MonoBehaviour:
   <AttackDamage>k__BackingField:
     Value: 10
   <Name>k__BackingField: Huntress
+  <Sounds>k__BackingField:
+    StartTurn:
+    - {fileID: 8300000, guid: b65f0a22d77274a0c991c9ce95d35b64, type: 3}
+    - {fileID: 8300000, guid: b21a2acc523ba49979498d782ce51021, type: 3}
+    - {fileID: 8300000, guid: 948c84e2313e5445a9443f16d7ac6ed8, type: 3}
+    - {fileID: 8300000, guid: 520822e61b1144d7588d5eb6a675e23b, type: 3}
+    Ability: []
+    LowHealth: {fileID: 8300000, guid: 2c545d682ce264fc4a52dbc10b8c6de6, type: 3}
+    Death: {fileID: 8300000, guid: 1ce6128bf170245efb97b330945a50b8, type: 3}
   Abilities:
   - rid: 217761973881274445
   references:

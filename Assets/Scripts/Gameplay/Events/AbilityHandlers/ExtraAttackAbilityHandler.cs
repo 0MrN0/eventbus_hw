@@ -20,6 +20,9 @@ namespace Gameplay.Events
             if (!evt.Attacker.TryGet<ExtraAttackAbility>(out var ability)) return;
 
             var targets = _random.PickRandom(_registry.GetAliveTeam(evt.Target.Get<TeamComponent>().Value), ability.TargetsCount);
+            if (targets.Count == 0) return;
+
+            EventBus.RaiseEvent(new AbilityTriggeredEvent(evt.Attacker));
             foreach (var target in targets)
             {
                 EventBus.RaiseEvent(new DamageRequestEvent(ability.Damage, target, evt.Attacker));

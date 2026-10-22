@@ -21,6 +21,7 @@ namespace Gameplay.Events
                 return;
             }
 
+            EventBus.RaiseEvent(new AbilityTriggeredEvent(evt.Attacker));
             EventBus.RaiseEvent(new HealEvent(evt.Attacker, evt.Attacker.Get<AttackDamage>().Value, evt.Attacker));
         }
     }
