@@ -1,16 +1,18 @@
+using Gameplay.Extensions;
 using Gameplay.Model;
 using Infrastructure.EventBus;
 
 namespace Gameplay.Events
 {
-    public sealed class StunAbilityHandler : EventHandler<AfterAttackEvent>
+    public sealed class StunAbilityHandler : EventHandler<HitEvent>
     {
         public StunAbilityHandler(IEventBus eventBus) : base(eventBus)
         {
         }
 
-        protected override void Handle(AfterAttackEvent evt)
+        protected override void Handle(HitEvent evt)
         {
+            if (!evt.Target.IsAlive()) return;
             if (!evt.Attacker.TryGet<StunAbility>(out var ability))
             {
                 return;

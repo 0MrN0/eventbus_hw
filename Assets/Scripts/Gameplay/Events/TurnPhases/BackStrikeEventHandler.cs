@@ -1,3 +1,4 @@
+using Gameplay.Extensions;
 using Gameplay.Model;
 using Infrastructure.EventBus;
 
@@ -11,6 +12,8 @@ namespace Gameplay.Events
 
         protected override void Handle(BackStrikeEvent evt)
         {
+            if (!evt.Attacker.IsAlive()) return;
+            if (evt.Attacker.Has<StunStatus>()) return;
             if (evt.Target.Has<BackStrikeImmunAbility>())
             {
                 EventBus.RaiseEvent(new AbilityTriggeredEvent(evt.Target));

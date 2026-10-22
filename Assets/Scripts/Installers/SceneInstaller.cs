@@ -65,6 +65,7 @@ namespace Installers
             SignalBusInstaller.Install(Container);
             Container.DeclareSignal<TurnStartedEvent>();
             Container.DeclareSignal<AttackEvent>();
+            Container.DeclareSignal<HitEvent>();
             Container.DeclareSignal<BackStrikeEvent>();
             Container.DeclareSignal<AfterAttackEvent>();
             Container.DeclareSignal<DamageRequestEvent>();
