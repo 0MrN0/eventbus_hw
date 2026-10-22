@@ -27,7 +27,7 @@ namespace Gameplay.Tasks
 
         public override UniTask Run(CancellationToken cancelToken)
         {
-            if (_turnContext.SkipTurn) return UniTask.CompletedTask;
+            if (_turnContext.IsSkipped) return UniTask.CompletedTask;
 
             if (!_turnContext.Attacker.TryGet<MissAbility>(out var ability)
                     || !_random.Roll(ability.Probability))
@@ -43,11 +43,11 @@ namespace Gameplay.Tasks
 
             if (possibleTargets.Count == 0)
             {
-                _turnContext.Target = null;
+                _turnContext.SetTarget(null);
             }
             else
             {
-                _turnContext.Target = _random.PickRandom(possibleTargets, 1)[0];
+                _turnContext.SetTarget(_random.PickRandom(possibleTargets, 1)[0]);
             }
 
             return UniTask.CompletedTask;

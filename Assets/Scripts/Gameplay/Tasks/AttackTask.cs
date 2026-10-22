@@ -9,10 +9,10 @@ namespace Gameplay.Tasks
 {
     public sealed class AttackTask : BaseTask
     {
-        private readonly TurnContext _turnContext;
+        private readonly IReadOnlyTurnContext _turnContext;
         private readonly IEventBus _eventBus;
 
-        public AttackTask(TurnContext context, IEventBus eventBus)
+        public AttackTask(IReadOnlyTurnContext context, IEventBus eventBus)
         {
             _turnContext = context;
             _eventBus = eventBus;

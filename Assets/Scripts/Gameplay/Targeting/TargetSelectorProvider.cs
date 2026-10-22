@@ -7,11 +7,11 @@ namespace Gameplay.Targeting
 {
     public sealed class TargetSelectorProvider
     {
-        private readonly TurnContext _turnContext;
+        private readonly IReadOnlyTurnContext _turnContext;
         private readonly PlayerTargetSelector _player;
         private readonly IEnemyAi _enemy;
 
-        public TargetSelectorProvider(TurnContext turnContext, PlayerTargetSelector player, IEnemyAi enemy)
+        public TargetSelectorProvider(IReadOnlyTurnContext turnContext, PlayerTargetSelector player, IEnemyAi enemy)
         {
             _turnContext = turnContext;
             _player = player;

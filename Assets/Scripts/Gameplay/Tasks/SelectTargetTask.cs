@@ -19,10 +19,10 @@ namespace Gameplay.Tasks
 
         public override async UniTask Run(CancellationToken cancelToken)
         {
-            if (_turnContext.SkipTurn) return;
+            if (_turnContext.IsSkipped) return;
 
             var selector = _selectors.GetFor(_turnContext.ActiveTeam);
-            _turnContext.Target = await selector.SelectTarget(_turnContext.Attacker, cancelToken);
+            _turnContext.SetTarget(await selector.SelectTarget(_turnContext.Attacker, cancelToken));
         }
     }
 }

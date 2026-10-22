@@ -35,15 +35,16 @@ namespace Gameplay.Tasks
         {
             var attacker = _registry.GetNextAlive(_turnContext.ActiveTeam)
                                 ?? throw new System.Exception($"{nameof(StartTurnTask)}: no alive heroes in {_turnContext.ActiveTeam}");
-            _turnContext.Attacker = attacker;
-            _turnContext.Target = null;
-            _turnContext.SkipTurn = false;
+            _turnContext.BeginTurn(attacker);
 
             _visualPipeline.AddTask(new RedrawHeroOutlineTask(attacker.GetView(), true));
             _uiService.GetListViewByTeam(_turnContext.ActiveTeam).SetActive(true);
             _uiService.GetListViewByTeam(_turnContext.OppositeTeam).SetActive(false);
 
-            _eventBus.RaiseEvent(new TurnStartedEvent(_turnContext.Attacker));
+            var started = new TurnStartedEvent(attacker);
+            _eventBus.RaiseEvent(started);
+            if (started.SkipTurn) _turnContext.Skip();
+
             return UniTask.CompletedTask;
         }
     }

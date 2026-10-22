@@ -5,24 +5,20 @@ namespace Gameplay.Events
 {
     public sealed class StunStatusHandler : EventHandler<TurnStartedEvent>
     {
-        private readonly TurnContext _turnContext;
-
-        public StunStatusHandler(IEventBus eventBus, TurnContext turnContext) : base(eventBus)
+        public StunStatusHandler(IEventBus eventBus) : base(eventBus)
         {
-            _turnContext = turnContext;
         }
 
         protected override void Handle(TurnStartedEvent evt)
         {
-            if (evt.Attacker.TryGet<StunStatus>(out var ability))
+            if (!evt.Attacker.TryGet<StunStatus>(out var stun)) return;
+
+            evt.SkipTurn = true;
+            stun.TurnsLeft--;
+            evt.Attacker.Set(stun);
+            if (stun.TurnsLeft <= 0)
             {
-                _turnContext.SkipTurn = true;
-                ability.TurnsLeft--;
-                evt.Attacker.Set(ability);
-                if (ability.TurnsLeft <= 0)
-                {
-                    evt.Attacker.Remove<StunStatus>();
-                }
+                evt.Attacker.Remove<StunStatus>();
             }
         }
     }

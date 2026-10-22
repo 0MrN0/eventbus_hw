@@ -48,7 +48,7 @@ namespace Gameplay.Tasks
                 return UniTask.CompletedTask;
             }
 
-            _turnContext.ActiveTeam = _turnContext.OppositeTeam;
+            _turnContext.PassTurn();
             return UniTask.CompletedTask;
         }
     }

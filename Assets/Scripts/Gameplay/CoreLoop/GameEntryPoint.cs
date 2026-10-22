@@ -49,8 +49,7 @@ namespace Gameplay.CoreLoop
         public void Initialize()
         {
             _spawner.Spawn();
-            _turnContext.PlayerTeam = _deckConfig.PlayerColor;
-            _turnContext.ActiveTeam = _turnContext.PlayerTeam;
+            _turnContext.StartGame(_deckConfig.PlayerColor);
 
             _turnPipeline.AddTask(_startTurnTask);
             _turnPipeline.AddTask(_selectTargetTask);

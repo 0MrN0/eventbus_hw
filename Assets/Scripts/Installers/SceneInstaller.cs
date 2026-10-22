@@ -43,7 +43,7 @@ namespace Installers
         {
             Container.BindInstance(_deckConfig);
             Container.Bind<HeroRegistry>().AsSingle();
-            Container.Bind<TurnContext>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TurnContext>().AsSingle();
             Container.Bind<HeroSpawner>().AsSingle();
         }
 
